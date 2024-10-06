@@ -51,7 +51,7 @@ Masih Banyak Pengguna dalam Kategori Sedentary: Data ini menunjukkan bahwa mayor
 
 Rata-Rata Kalori Terbakar setiap Jamnya
 
-Kalori pengguna terbakar lebih banyak mulai jam 6 pagi dan mulai menurut setelah jam 6 sore. Kemungkinan pengguna lebih aktif dari jam 6 pagi hingga 6 sore setiap hari karena orang biasanya sedang bekerja atau belajar selama rentang waktu tersebut.
+Kalori pengguna terbakar lebih banyak mulai jam 5 pagi dan mulai menurun setelah jam 7 malam. Kemungkinan pengguna lebih aktif dari jam 5 pagi hingga 7 malam setiap hari karena orang biasanya sedang bekerja atau belajar selama rentang waktu tersebut.
 
 ![image](https://github.com/user-attachments/assets/1928bae6-b78e-4fcb-a7c9-925fd9995398)
 
