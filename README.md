@@ -95,3 +95,150 @@ Efisiensi Tidur yang Umum: Sebagian besar data menunjukkan bahwa waktu tidur efe
 - Durasi Tidur Lebih Lama dengan Sleep Records yang Lebih Banyak: Pengguna dengan 3 Sleep Records per hari memiliki waktu tidur rata-rata yang lebih tinggi (sekitar 600 menit atau 10 jam) dibandingkan dengan pengguna dengan 1 atau 2 Sleep Records. Hal ini bisa berarti mereka yang tidur lebih dari sekali dalam sehari cenderung mendapatkan lebih banyak total waktu tidur, mungkin karena tidur siang atau tidur terpisah.
 - Variasi yang Lebih Besar pada Sleep Records 1: Pada pengguna dengan 1 Sleep Record, terdapat variabilitas yang tinggi, dengan banyak outlier di kedua ujung (waktu tidur sangat singkat dan sangat panjang). Ini menunjukkan beberapa pengguna yang tidur dengan durasi sangat pendek (sekitar 100 menit), sementara beberapa lainnya tidur hingga 800 menit (lebih dari 13 jam).
 
+# 2. Pre-Processing
+- Pada dataset 'dailyActivity_merged.csv', mengubah data type pada kolom 'ActivityDate' dari object menjadi date.
+- Pada dataset 'minuteMETsNarrow_merged.csv', mengubah data type pada kolom 'ActivityDate' dari object menjadi date.
+- Dataset 'minuteMETsNarrow_merged.csv' dikelompokkan 'group', berdasarkan jumlah (Total_METs) dan mean (Avg_METs).
+- Menggabungkan (merge) dataset 'dailyActivity_merged.csv' dan 'minuteMETsNarrow_merged.csv'.
+- Drop kolom Id
+
+## Data Cleansing
+
+### Handle Duplicated Data
+- Terdapat 1 baris data duplikat, data tersebut kemudian di-drop.
+
+### Handle Missing Values
+- Pada kolom 'Total_METs' dan 'Avg_METs', masing-masing terdapat 0.64% data null.
+- Data null kemudian diisi dengan median.
+
+### Handle Outliers
+![image](https://github.com/user-attachments/assets/5fd516fa-eee0-4bc5-ad2f-62daca740b49)
+- Berdasarkan boxplot, dapat outliers pada setiap kolom.
+- Data FitBit adalah data yang dicapture real-time menggunakan sebuah device. Pada dataset ini, outlier tidak dianggap karena data yang dihasilkan oleh pengguna FitBit sangat beragam, mulai dari orang dengan tingkat aktif rendah hingga tinggi. Oleh karena itu, walaupun distribusi data menunjukkan banyaknya outlier, dapat diasumsikan bahwa itu bukan outlier, namun merupakan data asli.
+
+## Feature Engineering
+
+### Feature Extraction
+1. Extract nama hari('DayOfWeek'), tanggal ('Day'), bulan ('Month'), tahun ('Year'), dan is_weekend dan drop 'ActivityDate'.
+2. Menambahkan kolom 'DistancePerStep' dengan membagi 'TotalDistance' dan 'TotalStep'
+3. Menambahkan kolom 'ActiveRation' dengan menambahkan 'VeryActiveMinutes' + 'FairlyActiveMinutes' + 'LightlyActiveMinutes' dan membaginya dengan 1440 (jumlah menit dalam satu hari).
+4. Menambahkan kolom 'ActiveDistanceRatio' dengan menambahkan 'ModeratelyActiveDistance' + 'LightActiveDistance' dan membaginya dengan 'TotalDistance'.
+5. Membuat kolom baru yaitu pembagian kelompok berdasarkan total langkah harian
+Berdasarkan jurnal Revisiting "How Many Steps Are Enough?" oleh TUDOR-LOCKE, CATRINE1; HATANO, YOSHIRO3; PANGRAZI, ROBERT P.2; KANG, MINSOO4. Diketahui dalam jurnal tersebut, pembagian langkah (steps) seringkali dikategorikan berdasarkan total langkah yang diambil dalam sehari. Berikut adalah pembagian umum yang sering digunakan berdasarkan total langkah:
+     - Sedentary (Tidak Aktif): 0 - 4999 langkah, ditandai dengan 0 pada kolom.
+     -  Low Active (Aktif Rendah): 5000 - 7499 langkah, ditandai dengan 1 pada kolom.
+     -  Somewhat Active (Aktif Sedang): 7500 - 9999 langkah, ditandai dengan 2 pada kolom.
+     -  Active (Aktif): 10,000 - 12,499 langkah, ditandai dengan 3 pada kolom.
+     -  Highly Active (Sangat Aktif): 12,500 langkah ke atas, ditandai dengan 4 pada kolom.
+Pembagian ini membantu dalam memahami tingkat aktivitas fisik individu dan dapat digunakan untuk menetapkan tujuan aktivitas sehari-hari. Maka akan dilakukan penambahan kolom tingkat aktif tidaknya berdasarkan total steps yang telah ditempuh pada hari tersebut.
+6. Menambahkan kolom 'TotalUsageMinutes' dengan menjumlahkan 'VeryActiveMinutes'+ 'FairlyActiveMinutes' + 'LightlyActiveMinutes' + 'SedentaryMinutes'.
+7. Membuat kolom ratio VeryActiveMinutes, FairlyActiveMinutes, LightlyActiveMinutes, dan SedentaryMinutes dengan membagi masing-masing kolom dengan TotalUsageMinutes.
+8. Menghitung jumlah TotalDistance dengan menjumlahkan 'VeryActiveDistance' + 'ModeratelyActiveDistance' + 'LightActiveDistance'.
+9. Menambahkan jumlah TotalActiveMinutes dengan menjumlahkan 'VeryActiveMinutes' + 'FairlyActiveMinutes' + 'LightlyActiveMinutes'.
+10. Menambahkan kolom 'ActiveRatio' dengan membagi 'TotalActiveMinutes' dengan 1440.
+11. Menambahkan kolom 'AverageActiveMinutes'
+12. Menambahkan kolom 'AveragePace' dengan membagi 'TotalDistance' dan 'TotalActiveMinutes' kemudian membaginya dengan 60.
+13. Menambahkan kolom 'InactiveRatio' dengan membagi 'SedentaryMinutes' dan 1440.
+
+#### Clustering
+- Clustering dilakukan menggunakan metode GMM (Gaussian Mixture Model).
+- Sebelum clustering, dilakukan scaling terlebih dahulu karena range data agak berbeda jauh, terutama antara steps dan minutes.
+- AIC dan BIC yang dihasilkan sama-sama rendah ketika jumlah cluster ada 18, oleh karena itu disimpulkan bahwa jumlah cluster yang optimal adalah 18.
+- Clustering kemudian dilakukan menggunakan GMM dengan hard assignment. GMM menghasilkan cluster yang tumpang tindih, sehingga setiap data dapat memiliki lebih dari 1 Cluster. Oleh karena itu, dengan menggunakan hard assignment maka 1 data point hanya akan memiliki 1 cluster.
+
+##### Check Cluster dengan boxplot
+![image](https://github.com/user-attachments/assets/39913b3c-9c76-42b1-9870-e55ecc21c376)
+![image](https://github.com/user-attachments/assets/478125d6-d4ed-434c-adaa-bc66b37f4aa6)
+![image](https://github.com/user-attachments/assets/7ecad1f3-468e-40f7-88e1-49807aa30af5)
+![image](https://github.com/user-attachments/assets/43c9b228-792d-4069-80c3-29fd341f6e4f)
+![image](https://github.com/user-attachments/assets/27f39f82-8cea-498c-82ab-399dee3e0d5a)
+![image](https://github.com/user-attachments/assets/920f31a7-12df-427b-bc80-fe0631fe4716)
+![image](https://github.com/user-attachments/assets/a635a57b-7562-436e-aa8b-24505cb907f6)
+![image](https://github.com/user-attachments/assets/938389cc-69f9-429c-a0ed-2aec2e2cb77e)
+![image](https://github.com/user-attachments/assets/68a5bdfa-40c9-4531-99e3-ef2813e9de69)
+![image](https://github.com/user-attachments/assets/e06f694b-662c-4504-a283-0883a99bed22)
+![image](https://github.com/user-attachments/assets/b485f4d0-e054-41af-b7f0-a753c1fa0d69)
+![image](https://github.com/user-attachments/assets/f8ca1ebb-31c3-424a-9b60-228ae120ebfa)
+![image](https://github.com/user-attachments/assets/b039d297-3a5e-4895-a9d4-0c67732a67e2)
+
+- Tidak ditemukan pola distribusi yang jelas pada boxplot. Sehingga akan dicoba caara lain.
+
+##### Check Cluster dengan Heatmap
+![image](https://github.com/user-attachments/assets/a2d7a66a-5a60-4268-a653-4f218312aec4)
+- Pada heatmap, pola yang terlihat jelas pada 'TotalSteps' dan 'Total_MET'. Oleh karena itu, akan diurutkan berdasarkan hasil ini. Hasilnya akan dimasukkan ke dalam variabel 'ActivityRank'.
+
+##### Mengurutkan Cluster
+![image](https://github.com/user-attachments/assets/99274327-652c-4216-8b1e-7b9e77eca592)
+- Karena cluster bisa diurutkan, maka kita akan mengambil kolom ActivityRank, dan tidak menggunakan Cluster lagi. Hal ini dilakukan untuk membuat machine learning mampu menangkap pola urutan yang ada pada data ini. Namun, akan dilakukan pengecekan ulang di feature selection,  untuk memastikan skor yang lebih tinggi antara ActivityRank dan Cluster.
+
+### Fitur Tambahan yang Belum ada di Dataset
+1. Data jumlah kalori yang dikeluarkan per hari agar seseorang bisa hidup sehat.
+2. Goals dari tiap user (apakah olahraga untuk sehat/menurunkan berat badan/alasan lain).
+3. Data total steps per hari agar seseorang bisa hidup sehat.
+
+## Feature Encoding
+Semua feature sudah di-encode pada tahap feature extraction.
+
+## Data Splitting
+Data di split sebelum SelectKBest dan sebelum scaling agar menghindari data leakage.
+
+## Feature Selection
+Feature selection dilakukan dengan SelectKBest
+![image](https://github.com/user-attachments/assets/5c6da21c-bf92-4137-adb9-04e2ff7df796)
+
+- Hipotesis di section sebelumnya terbukti bahwa Activity Rank itu lebih bermanfaat dibandingkan hanya cluster saja. Maka fitur Cluster bisa di drop.
+- Fitur yang diambil adalah fitur dengan Mutual Information Score di atas 0.1 yaitu:
+['Total_MET',
+ 'Avg_METs',
+ 'TotalDistance',
+ 'DistancePerStep',
+ 'TrackerDistance',
+ 'StepsbyDistance',
+ 'TotalActiveDistance',
+ 'TotalSteps',
+ 'ActiveRatio',
+ 'AverageActiveMinutes',
+ 'TotalActiveMinutes',
+ 'DistanceIntensity',
+ 'InactiveRatio',
+ 'SedentaryMinutes',
+ 'ActivityRank',
+ 'SedentaryRatio',
+ 'LightlyActiveMinutes',
+ 'VeryActiveMinutes',
+ 'LightActiveDistance',
+ 'LightlyActiveRatio',
+ 'AveragePace',
+ 'ActiveGroup',
+ 'VeryActiveRatio',
+ 'VeryActiveDistance',
+ 'FairlyActiveRatio',
+ 'ActiveDistanceRatio',
+ 'FairlyActiveMinutes',
+ 'TotalUsageMinutes',
+ 'ModeratelyActiveDistance']
+
+## Feature Transformation
+Feature transformation dilakukan dengan StandardScaler karena lebih robust terhadap outliers dan cocok untuk model regression. Sebelumnya, dataset dibagi menjadi train dan test terlebih dahulu.
+
+## Handle Class Imbalance
+Tidak dilakukan karena kasus pada dataset ini adalah regression.
+
+## Export Dataframe
+- Merge dataset X_train dengan y_train, dan menyimpannya sebagai 'FitbitTrainData.csv'
+- Merge dataset X_test  dengan y_test, dan menyimpannya sebagai 'FitbitTestData.csv'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
