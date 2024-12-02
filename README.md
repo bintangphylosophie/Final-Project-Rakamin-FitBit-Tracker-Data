@@ -2,8 +2,11 @@
 ## 0. Introduction & Background
   Fitbit adalah platform kesehatan digital dengan lebih dari 38.5 juta pengguna aktif di seluruh dunia. Melalui perangkat wearable, Fitbit dapat merekam  jumlah langkah harian, intensitas aktivitas, kalori, dan data lain terkait kebiasaan harian pengguna, dll. Meskipun popularitasnya tinggi, Fitbit memiliki tantangan yaitu kurangnya keterlibatan jangka panjang pengguna. dimana dari data yang ada  62% pengguna berhenti menggunakannya setelah 6-12 bulan, alasan utamanya adalah karena kebosanan dan kurangnya personalisasi wawasan yang relevan.
 Sumber: Statista(2023), Gartner(2022)
+
   Ada beberapa usaha yang bisa dilakukan untuk meningkatkan retensi pengguna untuk jangka panjang yaitu dengan fitur personalisasi, gamifikasi, dam notifikasi motivasi. Tentu  dilperlukan analisis mendalam dan pemodelan untuk memastikan strategi yang diambil sesuai dengan kebutuhan. Sumber: Varecol(2023)
+  
   Permodelan machine learning dilakukan karena berbagai alasan. Menghitung kalori secara manual adalah tugas yang cukup sulit, sementara tracking kalori secara individual terbukti membantu 16% pengguna mencapai berat badan ideal. Prediksi kalori berbasis data dapat memberikan wawasan yang lebih realistis kepada pengguna, yang pada akhirnya meningkatkan penggunaan harian perangkat seperti Fitbit hingga 20-25%. Dengan bantuan machine learning, prediksi kalori dapat dilakukan dengan lebih akurat dibandingkan metode tradisional, sekaligus memungkinkan model untuk terus diperbarui dan disesuaikan dengan pola kebiasaan pengguna seiring waktu. Sumber: Reddy, et al. (2023), Laranjo, et al. (2020), Edward, et al. (2018).
+  
   Goal proyek ini adalah meningkatkan keterlibatan jangka panjang pengguna melalui prediksi kalori dan fitur-fitur personalisasi, sehingga Fitbit dapat menjadi alat yang lebih efektif dalam membantu pencapaian tujuan kesehatan yang lebih luas. Objective-nya adalah mengembangkan model machine learning untuk memprediksi kalori berdasarkan data harian pengguna serta mendapatkan rekomendasi bisnis berdasarkan hasil eksplorasi data dan analisis model.
 
 ## 1. EDA and Insights from Dataset
@@ -238,7 +241,9 @@ Tidak dilakukan karena kasus pada dataset ini adalah regression.
 
 ## 3. Modelling
   Project ini merupakan tipe supervised learning dengan jenis regression dengan target calories. Untuk mengetahui algortma mana saja yang bisa kami gunakan untuk project ini, maka kami mencari paper referensi dengan dataset yang mirip. 
+  
   Berdasarkan berbagai penelitian, model yang digunakan dalam prediksi kalori mencakup metode Tree-Based seperti Random Forest dan XGBoost, serta model Linear seperti Linear Regression dan Ridge Regression. Penelitian oleh Nipas et al. (2022) menggunakan Random Forest, Linear Regression, dan Ridge Regression. Reddy et al. (2023) juga mencoba Linear Regression, Ridge Regression, dan Random Forest Regression. Sementara itu, Aziz et al. (2023) mengeksplorasi XGBoost, Linear Regression, SVM, dan Random Forest, dengan hasil terbaik diperoleh menggunakan metode Tree-Based.
+  
   Namun, saat tim kami mencoba algoritma tersebut, terdapat kendala yaitu pada overfitting. Karena itu, kami pun mencoba algoritma lainnya. Sebanyak 13 algoritma digunakan dalam eksperimen, yaitu:
   - Random Forest
   - Linear Regression
@@ -253,6 +258,7 @@ Tidak dilakukan karena kasus pada dataset ini adalah regression.
   - CatBoost Regressor
   - LightGBM Regressor
   - Extra Trees Regressor
+  
   Selain eksperimen dengan menggunakan banyak algoritma, kami juga melakukan berbagai eksperimen pada scaling, feature selection, dan tuning menggunakan GridSearch pada algoritma yang memiliki hasil evaluasi terbaik.
   1. Scaling
      Membandingkan dua metode scaling, yaitu StandardScaler dan RobustScaler.
