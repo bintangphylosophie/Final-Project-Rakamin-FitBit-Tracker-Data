@@ -1,5 +1,5 @@
 # Improving Fitbit Retention Through Data Analysis
-##0. Introduction & Background
+## 0. Introduction & Background
   Fitbit adalah platform kesehatan digital dengan lebih dari 38.5 juta pengguna aktif di seluruh dunia. Melalui perangkat wearable, Fitbit dapat merekam  jumlah langkah harian, intensitas aktivitas, kalori, dan data lain terkait kebiasaan harian pengguna, dll. Meskipun popularitasnya tinggi, Fitbit memiliki tantangan yaitu kurangnya keterlibatan jangka panjang pengguna. dimana dari data yang ada  62% pengguna berhenti menggunakannya setelah 6-12 bulan, alasan utamanya adalah karena kebosanan dan kurangnya personalisasi wawasan yang relevan.
 Sumber: Statista(2023), Gartner(2022)
   Ada beberapa usaha yang bisa dilakukan untuk meningkatkan retensi pengguna untuk jangka panjang yaitu dengan fitur personalisasi, gamifikasi, dam notifikasi motivasi. Tentu  dilperlukan analisis mendalam dan pemodelan untuk memastikan strategi yang diambil sesuai dengan kebutuhan. Sumber: Varecol(2023)
