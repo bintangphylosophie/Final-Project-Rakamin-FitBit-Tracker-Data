@@ -1,6 +1,6 @@
 # 
 
-The Improving FitBit User Retention dataset utilized in this Final Project was obtained from Kaggle. 
+The FItBit Tracker dataset utilized in this Final Project was obtained from Kaggle. 
 <br>Dataset's Link : https://www.kaggle.com/datasets/arashnic/fitbit 
 
 ## 📚 Installation
