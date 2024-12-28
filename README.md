@@ -38,7 +38,8 @@ jupyter notebook Modelling_Merged.ipynb
 ## Problem
 Fitbit is a digital health platform with over 38.5 million active users worldwide. Through wearable devices, Fitbit can record daily step counts, activity intensity, calories burned, and other data related to users' daily habits, among other things.
 
-Despite its high popularity, Fitbit faces challenges, particularly a lack of long-term user engagement. Data shows that 62% of users stop using it after 6-12 months, with the main reasons being boredom and the lack of personalized and relevant insights..
+Despite its high popularity, Fitbit faces challenges, particularly a lack of long-term user engagement. Data shows that 62% of users stop using it after 6-12 months, with the main reasons being boredom and the lack of personalized and relevant insights 
+source: Statista(2023), Gartner(2022)
 
 ## 🎯 Goals 
 As a result, the F4 Team strives to improve user retention, which increases long-term usage.
