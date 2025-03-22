@@ -1,6 +1,6 @@
 # Improving Fitbit Retention Through Data Analysis
 ![Image](https://github.com/user-attachments/assets/39ecafa1-86d6-4640-96ed-f6ca9e6d0f2e)
-<img src="[https://user-images.githubusercontent.com/74038190/212749726-d36b8253-74bb-4509-870d-e29ed3b8ff4a.gif](https://github-production-user-asset-6210df.s3.amazonaws.com/180777903/425726265-39ecafa1-86d6-4640-96ed-f6ca9e6d0f2e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250322%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250322T081122Z&X-Amz-Expires=300&X-Amz-Signature=fafc45014d5d531f740c69f7446f29eb4ccdd7bd2fe6e6a6e30c9e8b8d908745&X-Amz-SignedHeaders=host)" width="500">
+
 
 
 The FItBit Tracker dataset utilized in this Final Project was obtained from Kaggle. 
