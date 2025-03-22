@@ -1,5 +1,5 @@
-# 
-
+# Improving Fitbit Retention Through Data Analysis
+![Image](https://github.com/user-attachments/assets/9971943f-83cb-4ea0-be28-f8fa721a3482)
 The FItBit Tracker dataset utilized in this Final Project was obtained from Kaggle. 
 <br>Dataset's Link : https://www.kaggle.com/datasets/arashnic/fitbit 
 
