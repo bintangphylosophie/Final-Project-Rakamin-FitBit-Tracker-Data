@@ -120,10 +120,6 @@ The `All EDA and Insight.ipynb` notebook contains the initial data exploration, 
 <br>
 <br>
 
- Several significant variables have yielded insights into the attributes of candidates who tend to depart after training and those who continue to be employed by the organization after training. These variables include the candidate's location, status as an employee with relevant data science experience, educational attainment, and work experience.
-<br>
-<br>
-
 
 # ⚙️ Stage 2: Data Preprocessing
 
