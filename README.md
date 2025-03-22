@@ -117,8 +117,41 @@ The `All EDA and Insight.ipynb` notebook contains the initial data exploration, 
 
 
 
+
 <br>
 <br>
+<br>
+<p align="center">
+<img src="https://github.com/user-attachments/assets/c0826b07-708c-41bd-b46f-103e675bf1c7" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/f90be20f-42ea-4251-9a8b-e50f80a8f171" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/2795dd19-95e4-4ba1-9859-3349f3d1accc" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/c81fdefd-aeaa-429e-8e8d-3761b5b055f5" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/89230a7a-65d0-41a3-ac73-5ac8b6290655" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/763b2acb-7ee6-4d74-adab-a01ecca3ca6b" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/5a6d22aa-90c1-4e0a-8e3f-812aa28fa6ca" width="400">
+</p>
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/85eaba29-925a-4f2f-a885-90326585653d" width="400">
+</p>
 
 
 # ⚙️ Stage 2: Data Preprocessing
